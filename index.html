@@ -1,50 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Name</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuneCrate — Discover Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-  <header>
-    <nav>
-      <span class="nav__logo">Project Name</span>
-      <div class="nav__links">
-        <a href="index.html">Search</a>
-        <a href="saved.html">Saved</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">Logout</button>
-      </div>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TuneCrate home">
+        <span class="nav__logo-icon" aria-hidden="true">◈</span>
+        TuneCrate
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link nav__link--active" aria-current="page">Discover</a></li>
+        <li><a href="saved.html" class="nav__link">My Crate</a></li>
+        <li><a href="login.html" class="nav__link">Profile</a></li>
+      </ul>
+      <button class="nav__menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-mobile">
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+      </button>
     </nav>
+    <ul class="nav__links--mobile" id="nav-links-mobile" role="list" hidden>
+      <li><a href="index.html" class="nav__link nav__link--active" aria-current="page">Discover</a></li>
+      <li><a href="saved.html" class="nav__link">My Crate</a></li>
+      <li><a href="login.html" class="nav__link">Profile</a></li>
+    </ul>
   </header>
 
-  <main>
-
-    <!-- search / filter form -->
-    <section>
-      <form id="search-form">
-        <!-- add your inputs here (at least 3 different types) -->
-        <button type="submit">Search</button>
-      </form>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Your personal music vault</p>
+        <h1 class="hero__heading" id="hero-heading">
+          Find the records<br />
+          <em>worth keeping.</em>
+        </h1>
+        <p class="hero__sub">
+          Search millions of tracks and albums. Save the ones that matter to your crate.
+        </p>
+        <form class="search-form" id="search-form" role="search" novalidate>
+          <div class="search-form__row">
+            <label for="search-input" class="sr-only">Search for music</label>
+            <input
+              type="search"
+              id="search-input"
+              name="query"
+              class="search-form__input"
+              placeholder="Artist, album, or track…"
+              minlength="2"
+              required
+              autocomplete="off"
+              aria-required="true"
+              aria-describedby="search-hint"
+            />
+            <button type="submit" class="search-form__btn" aria-label="Search">
+              <span aria-hidden="true">→</span> Search
+            </button>
+          </div>
+          <p class="search-form__hint" id="search-hint">Try "Kendrick Lamar", "Dark Side of the Moon", or "Blinding Lights"</p>
+          <p class="search-form__error" id="search-error" role="alert" aria-live="polite" hidden></p>
+        </form>
+      </div>
+      <div class="hero__vinyl" aria-hidden="true">
+        <div class="vinyl">
+          <div class="vinyl__label">
+            <span class="vinyl__label-text">TC</span>
+          </div>
+        </div>
+      </div>
     </section>
+    <section class="filter-bar" aria-label="Filter results">
+      <div class="filter-bar__inner">
+        <span class="filter-bar__label">Filter by</span>
+        <div class="filter-bar__chips" role="group" aria-label="Media type filter">
+          <button class="chip chip--active" data-type="musicTrack" aria-pressed="true">Tracks</button>
+          <button class="chip" data-type="album" aria-pressed="false">Albums</button>
+          <button class="chip" data-type="musicArtist" aria-pressed="false">Artists</button>
+        </div>
+        <label class="filter-bar__limit-label" for="results-limit">Show</label>
+        <select class="filter-bar__select" id="results-limit" name="limit" aria-label="Number of results">
+          <option value="12">12 results</option>
+          <option value="24" selected>24 results</option>
+          <option value="48">48 results</option>
+        </select>
+      </div>
+    </section>
+    <section class="results-section" aria-labelledby="results-heading">
+      <div class="results-section__inner">
+        <div class="state state--empty" id="state-empty">
+          <div class="state__icon" aria-hidden="true">♫</div>
+          <h2 class="state__heading" id="results-heading">Start searching</h2>
+          <p class="state__body">Type an artist, album, or track name above to fill your crate.</p>
+        </div>
+        <div class="state state--loading" id="state-loading" hidden aria-live="polite" aria-label="Loading results">
+          <div class="spinner" aria-hidden="true">
+            <div class="spinner__ring"></div>
+            <div class="spinner__ring"></div>
+            <div class="spinner__ring"></div>
+          </div>
+          <p class="state__body">Finding tracks…</p>
+        </div>
 
-    <!-- loading and error states -->
-    <p id="loading-msg" hidden>Loading…</p>
-    <p id="error-msg" hidden></p>
+        <div class="state state--error" id="state-error" hidden role="alert" aria-live="assertive">
+          <div class="state__icon" aria-hidden="true">✕</div>
+          <h2 class="state__heading">Couldn't load results</h2>
+          <p class="state__body" id="error-message">Check your connection and try again.</p>
+          <button class="btn btn--outline" id="retry-btn">Try again</button>
+        </div>
 
-    <!-- dynamically generated cards land here -->
-    <section>
-      <div id="results-grid"></div>
+        <div class="state state--no-results" id="state-no-results" hidden>
+          <div class="state__icon" aria-hidden="true">◯</div>
+          <h2 class="state__heading">No results found</h2>
+          <p class="state__body" id="no-results-term">Nothing matched your search. Try a different name.</p>
+        </div>
+
+        <div class="results-meta" id="results-meta" hidden>
+          <h2 class="results-meta__heading" id="results-heading-live">
+            Results for <span class="results-meta__term" id="results-term"></span>
+          </h2>
+          <p class="results-meta__count" id="results-count"></p>
+        </div>
+
+        <div
+          class="cards-grid"
+          id="cards-grid"
+          role="list"
+          aria-label="Search results"
+          aria-live="polite"
+          aria-atomic="false"
+        ></div>
+
+      </div>
     </section>
 
   </main>
 
-  <footer>
-    <!-- footer content -->
+  <div class="modal-overlay" id="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal__close" id="modal-close" aria-label="Close detail view">✕</button>
+      <div class="modal__art-wrap">
+        <img class="modal__art" id="modal-art" src="" alt="" width="300" height="300" />
+      </div>
+      <div class="modal__body">
+        <p class="modal__genre" id="modal-genre"></p>
+        <h2 class="modal__title" id="modal-title"></h2>
+        <p class="modal__artist" id="modal-artist"></p>
+        <p class="modal__album" id="modal-album"></p>
+        <p class="modal__meta" id="modal-meta"></p>
+        <div class="modal__actions">
+          <button class="btn btn--primary" id="modal-save-btn">+ Add to Crate</button>
+          <a class="btn btn--ghost" id="modal-itunes-link" href="#" target="_blank" rel="noopener noreferrer">
+            Listen on iTunes ↗
+          </a>
+        </div>
+        <p class="modal__feedback" id="modal-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">
+        <span aria-hidden="true">◈</span> TuneCrate
+      </p>
+      <nav aria-label="Footer navigation">
+        <ul class="site-footer__links" role="list">
+          <li><a href="index.html" class="site-footer__link">Discover</a></li>
+          <li><a href="saved.html" class="site-footer__link">My Crate</a></li>
+          <li><a href="login.html" class="site-footer__link">Profile</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__credit">
+        Music data from <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/" target="_blank" rel="noopener noreferrer" class="site-footer__link">iTunes Search API</a>
+      </p>
+    </div>
   </footer>
 
   <script type="module" src="js/main.js"></script>
