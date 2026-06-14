@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
+ 
   <!-- ═══════════════════════════════════════════
        HEADER / NAV
   ════════════════════════════════════════════ -->
@@ -37,9 +37,9 @@
       <li><a href="login.html" class="nav__link">Profile</a></li>
     </ul>
   </header>
-
+ 
   <main id="main-content">
-
+ 
     <!-- ═══════════════════════════════════════════
          HERO
     ════════════════════════════════════════════ -->
@@ -53,7 +53,7 @@
         <p class="hero__sub">
           Search millions of tracks and albums. Save the ones that matter to your crate.
         </p>
-
+ 
         <!-- SEARCH FORM -->
         <form class="search-form" id="search-form" role="search" novalidate>
           <div class="search-form__row">
@@ -78,7 +78,7 @@
           <p class="search-form__error" id="search-error" role="alert" aria-live="polite" hidden></p>
         </form>
       </div>
-
+ 
       <!-- Decorative vinyl grooves -->
       <div class="hero__vinyl" aria-hidden="true">
         <div class="vinyl">
@@ -88,7 +88,7 @@
         </div>
       </div>
     </section>
-
+ 
     <!-- ═══════════════════════════════════════════
          FILTER BAR
     ════════════════════════════════════════════ -->
@@ -108,20 +108,20 @@
         </select>
       </div>
     </section>
-
+ 
     <!-- ═══════════════════════════════════════════
          RESULTS AREA
     ════════════════════════════════════════════ -->
     <section class="results-section" aria-labelledby="results-heading">
       <div class="results-section__inner">
-
+ 
         <!-- State: empty (default) -->
         <div class="state state--empty" id="state-empty">
           <div class="state__icon" aria-hidden="true">♫</div>
           <h2 class="state__heading" id="results-heading">Start searching</h2>
           <p class="state__body">Type an artist, album, or track name above to fill your crate.</p>
         </div>
-
+ 
         <!-- State: loading -->
         <div class="state state--loading" id="state-loading" hidden aria-live="polite" aria-label="Loading results">
           <div class="spinner" aria-hidden="true">
@@ -131,7 +131,7 @@
           </div>
           <p class="state__body">Finding tracks…</p>
         </div>
-
+ 
         <!-- State: error -->
         <div class="state state--error" id="state-error" hidden role="alert" aria-live="assertive">
           <div class="state__icon" aria-hidden="true">✕</div>
@@ -139,14 +139,14 @@
           <p class="state__body" id="error-message">Check your connection and try again.</p>
           <button class="btn btn--outline" id="retry-btn">Try again</button>
         </div>
-
+ 
         <!-- State: no results -->
         <div class="state state--no-results" id="state-no-results" hidden>
           <div class="state__icon" aria-hidden="true">◯</div>
           <h2 class="state__heading">No results found</h2>
           <p class="state__body" id="no-results-term">Nothing matched your search. Try a different name.</p>
         </div>
-
+ 
         <!-- Results heading (shown when results are present) -->
         <div class="results-meta" id="results-meta" hidden>
           <h2 class="results-meta__heading" id="results-heading-live">
@@ -154,7 +154,7 @@
           </h2>
           <p class="results-meta__count" id="results-count"></p>
         </div>
-
+ 
         <!-- Cards grid -->
         <div
           class="cards-grid"
@@ -164,38 +164,13 @@
           aria-live="polite"
           aria-atomic="false"
         ></div>
-
+ 
       </div>
     </section>
-
+ 
   </main>
-
-  <!-- ═══════════════════════════════════════════
-       DETAIL MODAL
-  ════════════════════════════════════════════ -->
-  <div class="modal-overlay" id="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
-    <div class="modal">
-      <button class="modal__close" id="modal-close" aria-label="Close detail view">✕</button>
-      <div class="modal__art-wrap">
-        <img class="modal__art" id="modal-art" src="" alt="" width="300" height="300" />
-      </div>
-      <div class="modal__body">
-        <p class="modal__genre" id="modal-genre"></p>
-        <h2 class="modal__title" id="modal-title"></h2>
-        <p class="modal__artist" id="modal-artist"></p>
-        <p class="modal__album" id="modal-album"></p>
-        <p class="modal__meta" id="modal-meta"></p>
-        <div class="modal__actions">
-          <button class="btn btn--primary" id="modal-save-btn">+ Add to Crate</button>
-          <a class="btn btn--ghost" id="modal-itunes-link" href="#" target="_blank" rel="noopener noreferrer">
-            Listen on iTunes ↗
-          </a>
-        </div>
-        <p class="modal__feedback" id="modal-feedback" role="status" aria-live="polite"></p>
-      </div>
-    </div>
-  </div>
-
+ 
+ 
   <!-- ═══════════════════════════════════════════
        FOOTER
   ════════════════════════════════════════════ -->
@@ -209,7 +184,8 @@
       </p>
     </div>
   </footer>
-
+ 
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
+ 
