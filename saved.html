@@ -1,39 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saved — Project Name</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuneCrate — My Crate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header>
-    <nav>
-      <span class="nav__logo">Project Name</span>
-      <div class="nav__links">
-        <a href="index.html">Search</a>
-        <a href="saved.html">Saved</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">Logout</button>
-      </div>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TuneCrate home">
+        <span class="nav__logo-icon" aria-hidden="true">◈</span>
+        TuneCrate
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Discover</a></li>
+        <li><a href="saved.html" class="nav__link nav__link--active" aria-current="page">My Crate</a></li>
+        <li><a href="login.html" class="nav__link">Profile</a></li>
+      </ul>
+      <button class="nav__menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-mobile">
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+      </button>
     </nav>
+    <ul class="nav__links--mobile" id="nav-links-mobile" role="list" hidden>
+      <li><a href="index.html" class="nav__link">Discover</a></li>
+      <li><a href="saved.html" class="nav__link nav__link--active" aria-current="page">My Crate</a></li>
+      <li><a href="login.html" class="nav__link">Profile</a></li>
+    </ul>
   </header>
 
-  <main>
+  <main id="main-content">
 
-    <section>
-      <h2>Saved Items</h2>
-      <p id="saved-empty" hidden>Nothing saved yet.</p>
-      <div id="saved-grid"></div>
+    <section class="page-header">
+      <div class="page-header__inner">
+        <div class="page-header__text">
+          <p class="hero__eyebrow">Your collection</p>
+          <h1 class="page-header__heading">My Crate</h1>
+          <p class="page-header__sub">Tracks and albums you've saved.</p>
+        </div>
+        <div class="page-header__actions">
+          <p class="crate-count" id="crate-count"></p>
+          <button class="btn btn--outline" id="clear-crate-btn">Clear crate</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="crate-filter" aria-label="Filter crate">
+      <div class="crate-filter__inner">
+        <span class="filter-bar__label">Sort by</span>
+        <select class="filter-bar__select" id="sort-select" aria-label="Sort saved items">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="artist">Artist A–Z</option>
+          <option value="title">Title A–Z</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="results-section" aria-labelledby="crate-heading">
+      <div class="results-section__inner">
+
+        <div class="state state--empty" id="state-empty">
+          <div class="state__icon" aria-hidden="true">◈</div>
+          <h2 class="state__heading" id="crate-heading">Your crate is empty</h2>
+          <p class="state__body">Head to Discover and save tracks you love.</p>
+          <a href="index.html" class="btn btn--primary">Go to Discover</a>
+        </div>
+
+        <div class="results-meta" id="results-meta" hidden>
+          <h2 class="results-meta__heading" id="crate-heading">
+            Saved items
+          </h2>
+          <p class="results-meta__count" id="results-count"></p>
+        </div>
+
+        <div class="cards-grid" id="cards-grid" role="list" aria-label="Saved items" aria-live="polite"></div>
+
+      </div>
     </section>
 
   </main>
 
-  <footer>
-    <!-- footer content -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">
+        <span aria-hidden="true">◈</span> TuneCrate
+      </p>
+      <p class="site-footer__credit">
+        Music data from <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/" target="_blank" rel="noopener noreferrer" class="site-footer__link">iTunes Search API</a>
+      </p>
+    </div>
   </footer>
 
   <script type="module" src="js/saved.js"></script>
