@@ -291,6 +291,7 @@ h1, h2, h3 {
   padding: 5rem 1.5rem;
   gap: 1rem;
 }
+.state[hidden], .results-meta[hidden] { display: none; }
 .state__icon              { font-size: 3rem; color: var(--border); }
 .state--error .state__icon { color: var(--error); }
 .state__heading           { font-size: 1.375rem; font-weight: 700; color: var(--muted); }
