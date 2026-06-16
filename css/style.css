@@ -89,7 +89,7 @@ h1, h2, h3 {
 .btn:active             { transform: scale(.97); }
 .btn--primary           { background: var(--accent); color: var(--bg); }
 .btn--primary:hover     { background: var(--accent-dim); }
-.btn--outline           { border: 1px solid var(--border); }
+.btn--outline           { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn--outline:hover     { border-color: var(--accent); color: var(--accent); }
 .btn--ghost             { border: 1px solid var(--border); color: var(--muted); }
 .btn--ghost:hover       { color: var(--text); border-color: var(--muted); }
@@ -165,7 +165,7 @@ h1, h2, h3 {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 5rem 1.5rem 4rem;
+  padding: 6.5rem 1.5rem 4rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -187,7 +187,7 @@ h1, h2, h3 {
   margin-bottom: 1.25rem;
 }
 
-.hero__heading    { font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; margin-bottom: 1.25rem; }
+.hero__heading    { font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; line-height: 1.4; padding-bottom: .15em; margin-bottom: 1.1rem; }
 .hero__heading em { font-style: normal; color: var(--accent); }
 .hero__sub        { font-size: 1.1rem; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
 
@@ -272,9 +272,10 @@ h1, h2, h3 {
 .filter-bar__label  { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .filter-bar__chips  { display: flex; gap: .5rem; }
 
-.chip               { padding: .4rem 1rem; border-radius: var(--radius-full); border: 1px solid var(--border); font-size: .875rem; font-weight: 500; color: var(--muted); transition: background var(--t), color var(--t), border-color var(--t); }
-.chip:hover         { color: var(--text); border-color: var(--muted); }
+.chip               { padding: .4rem 1rem; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--surface-2); font-size: .875rem; font-weight: 500; color: var(--muted); transition: background var(--t), color var(--t), border-color var(--t); }
+.chip:hover         { color: var(--text); background: var(--border); border-color: var(--text); }
 .chip--active       { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 700; }
+.chip--active:hover { background: var(--accent-dim); color: var(--bg); }
 .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .filter-bar__limit-label { margin-left: auto; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -392,6 +393,7 @@ h1, h2, h3 {
 .profile-section        { padding: 2.5rem 1.5rem 4rem; }
 .profile-section__inner { max-width: 640px; margin: 0 auto; }
 
+.profile-banner[hidden] { display: none; }
 .profile-banner {
   display: flex;
   align-items: center;
