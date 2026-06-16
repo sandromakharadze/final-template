@@ -19,8 +19,8 @@ const resultsTerm    = document.getElementById('results-term');
 const resultsCount   = document.getElementById('results-count');
 const cardsGrid      = document.getElementById('cards-grid');
 
-const menuBtn        = document.querySelector('.nav__menu-btn');
-const mobileNav      = document.getElementById('nav-links-mobile');
+const menuBtn   = document.querySelector('.nav__menu-btn');
+const mobileNav = document.getElementById('nav-links-mobile');
 
 
 // ── App state ─────────────────────────────────────────────
@@ -72,6 +72,14 @@ function removeFromCrate(id) {
   sessionCounter.decrement();
 }
 
+function saveLastQuery(query) {
+  localStorage.setItem('tunecrate-last-query', query);
+}
+
+function loadLastQuery() {
+  return localStorage.getItem('tunecrate-last-query') ?? '';
+}
+
 
 // ── State display ─────────────────────────────────────────
 const allStates = [stateEmpty, stateLoading, stateError, stateNoResults, resultsMeta];
@@ -117,7 +125,7 @@ function buildCard(item) {
   artWrap.className = 'card__art-wrap';
 
   if (artUrl) {
-    const img    = document.createElement('img');
+    const img     = document.createElement('img');
     img.className = 'card__art';
     img.src       = artUrl;
     img.alt       = `${title} artwork`;
@@ -182,6 +190,7 @@ function buildCard(item) {
   // Navigate to detail page on card click — closes over this item
   function openDetail() {
     localStorage.setItem('tunecrate-preview', JSON.stringify(item));
+    saveLastQuery(input.value.trim());
     window.location.href = `detail.html?id=${item.id}`;
   }
 
@@ -353,3 +362,10 @@ document.addEventListener('keydown', e => {
     menuBtn.focus();
   }
 });
+
+// ── Restore last search on back-navigation ────────────────
+const lastQuery = loadLastQuery();
+if (lastQuery) {
+  input.value = lastQuery;
+  runSearch(lastQuery, currentEntity, Number(limitSelect.value));
+}
