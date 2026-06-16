@@ -179,6 +179,20 @@ function buildCard(item) {
   body.append(titleEl, artistEl, badge);
   card.append(artWrap, body);
 
+  // Navigate to detail page on card click — closes over this item
+  function openDetail() {
+    localStorage.setItem('tunecrate-preview', JSON.stringify(item));
+    window.location.href = `detail.html?id=${item.id}`;
+  }
+
+  card.addEventListener('click', openDetail);
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openDetail();
+    }
+  });
+
   return card;
 }
 
