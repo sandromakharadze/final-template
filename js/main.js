@@ -73,11 +73,11 @@ function removeFromCrate(id) {
 }
 
 function saveLastQuery(query) {
-  localStorage.setItem('tunecrate-last-query', query);
+  sessionStorage.setItem('tunecrate-last-query', query);
 }
 
 function loadLastQuery() {
-  return localStorage.getItem('tunecrate-last-query') ?? '';
+  return sessionStorage.getItem('tunecrate-last-query') ?? '';
 }
 
 
@@ -362,6 +362,7 @@ document.addEventListener('keydown', e => {
     menuBtn.focus();
   }
 });
+
 
 // ── Restore last search on back-navigation ────────────────
 const lastQuery = loadLastQuery();
