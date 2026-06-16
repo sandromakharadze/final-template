@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuneCrate — Track Detail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="TuneCrate home">
+        <span class="nav__logo-icon" aria-hidden="true">◈</span>
+        TuneCrate
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Discover</a></li>
+        <li><a href="saved.html" class="nav__link">My Crate</a></li>
+        <li><a href="login.html" class="nav__link">Profile</a></li>
+      </ul>
+      <button class="nav__menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-mobile">
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+        <span class="nav__menu-bar"></span>
+      </button>
+    </nav>
+    <ul class="nav__links--mobile" id="nav-links-mobile" role="list" hidden>
+      <li><a href="index.html" class="nav__link">Discover</a></li>
+      <li><a href="saved.html" class="nav__link">My Crate</a></li>
+      <li><a href="login.html" class="nav__link">Profile</a></li>
+    </ul>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Back link -->
+    <div class="detail-back">
+      <div class="detail-back__inner">
+        <a href="index.html" class="detail-back__link" id="back-link">← Back to results</a>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div class="state state--error" id="state-error" hidden>
+      <div class="state__icon" aria-hidden="true">✕</div>
+      <h2 class="state__heading">Couldn't load track</h2>
+      <p class="state__body" id="error-message">No track data found. Try searching again.</p>
+      <a href="index.html" class="btn btn--outline">Back to search</a>
+    </div>
+
+    <!-- Detail content -->
+    <article class="detail" id="detail-content" hidden aria-labelledby="detail-title">
+      <div class="detail__inner">
+
+        <div class="detail__art-wrap">
+          <img class="detail__art" id="detail-art" src="" alt="" width="400" height="400" />
+        </div>
+
+        <div class="detail__body">
+          <p class="detail__genre"    id="detail-genre"></p>
+          <h1 class="detail__title"   id="detail-title"></h1>
+          <p class="detail__artist"   id="detail-artist"></p>
+          <p class="detail__album"    id="detail-album"></p>
+
+          <dl class="detail__meta" id="detail-meta"></dl>
+
+          <div class="detail__actions">
+            <button class="btn btn--primary" id="save-btn">+ Add to Crate</button>
+            <a class="btn btn--ghost" id="itunes-link" href="#" target="_blank" rel="noopener noreferrer">
+              Open in iTunes ↗
+            </a>
+          </div>
+
+          <p class="detail__feedback" id="detail-feedback" role="status" aria-live="polite"></p>
+        </div>
+
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">
+        <span aria-hidden="true">◈</span> TuneCrate
+      </p>
+      <p class="site-footer__credit">
+        Music data from <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/" target="_blank" rel="noopener noreferrer" class="site-footer__link">iTunes Search API</a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/detail.js"></script>
+</body>
+</html>
